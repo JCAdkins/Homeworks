@@ -23,9 +23,11 @@ curr.executemany('INSERT INTO Customer VALUES (?,?,?,?,?,?)', customers)
 sql = '''UPDATE Customer SET credit_limit = 10000.0 WHERE customer_number = 282'''
 curr.execute(sql)
 
-digit = 0
-curr.execute("SELECT * FROM Customer ORDER BY 'Column'")
 
+sql = '''DELETE FROM Customer WHERE customer_name = "Deerfield's Four Seasons"'''
+curr.execute(sql)
+
+digit = 0
 # trying to iterate through all the rows in the database but it only iterates once
 for row in curr:
     digit = digit + 1                                                   # |
@@ -36,11 +38,6 @@ for row in curr:
     sql = sql + rows + " WHERE 'Column' = '" + str(row[0]) + "'"        # |
     print(sql)
     curr.execute(sql)
-
-sql = '''DELETE FROM Customer WHERE customer_name = "Deerfield's Four Seasons"'''
-curr.execute(sql)
-
-
 
 conn.commit()
 conn.close()
